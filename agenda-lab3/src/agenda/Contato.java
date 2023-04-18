@@ -3,14 +3,40 @@ package agenda;
 import java.util.Objects;
 
 public class Contato {
+
     private String nome;
+
     private String sobrenome;
+
     private String numeroTelefone;
+
+    private boolean favorito;
 
     public Contato(String nome, String sobrenome, String numeroTelefone) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.numeroTelefone = numeroTelefone;
+        this.favorito = false;
+    }
+
+    public favoritar() {
+        this.favorito = true;
+    }
+
+    public desfavoritar(){
+        this.favorito = false;
+    }
+
+    public String getNome(){
+        return nome;
+    }
+
+    public String getSobrenome(){
+        return sobrenome;
+    }
+
+    public boolean getFavorito(){
+        return favorito;
     }
 
     @Override
@@ -22,16 +48,10 @@ public class Contato {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(nome, sobrenome);
-    }
-
-    @Override
     public String toString() {
-        return "Contato{" +
-                "nome='" + nome + '\'' +
-                ", sobrenome='" + sobrenome + '\'' +
-                ", numeroTelefone='" + numeroTelefone + '\'' +
-                '}';
+        if favorito{
+            return "❤️ " + this.nome + " " + this.sobrenome + "\n" + this.telefone;
+        }
+        return this.nome + " " + this.sobrenome + "\n" + this.telefone;
     }
 }
