@@ -105,7 +105,7 @@ public class MainAgenda {
 		System.out.print("\nQual contato> ");
 		int posicao = scanner.nextInt();
 		String contato = agenda.getContato(posicao);
-		System.out.println("Dados do contato:\n" + contato);
+		System.out.println("Dados do contato:\n" + contato.toString());
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class MainAgenda {
 	 * @param contato O contato a ser impresso.
 	 * @return A String formatada.
 	 */
-	private static String formataContato(int posicao, String contato) {
+	private static String formataContato(int posicao, Contato contato) {
 		return posicao + " - " + contato;
 	}
 

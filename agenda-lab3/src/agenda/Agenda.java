@@ -10,7 +10,7 @@ public class Agenda {
 	
 	private static final int TAMANHO_AGENDA = 100;
 	
-	private String[] contatos; //apenas uma simplificacao de contato
+	private Contato[] contatos; //apenas uma simplificacao de contato
 
 	/**
 	 * Cria uma agenda.
@@ -23,7 +23,7 @@ public class Agenda {
 	 * Acessa a lista de contatos mantida.
 	 * @return O array de contatos.
 	 */
-	public String[] getContatos() {
+	public Contato[] getContatos() {
 		return this.contatos.clone();
 	}
 
@@ -44,7 +44,7 @@ public class Agenda {
 	 * @param telefone Telefone do contato.
 	 */
 	public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
-		this.contatos[posicao] = nome;
+		this.contatos[posicao] = new Contato(nome, sobrenome, telefone);
 	}
 
 }

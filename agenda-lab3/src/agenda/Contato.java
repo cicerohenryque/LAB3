@@ -8,14 +8,14 @@ public class Contato {
 
     private String sobrenome;
 
-    private String numeroTelefone;
+    private String telefone;
 
     private boolean favorito;
 
     public Contato(String nome, String sobrenome, String numeroTelefone) {
         this.nome = nome;
         this.sobrenome = sobrenome;
-        this.numeroTelefone = numeroTelefone;
+        this.telefone = telefone;
         this.favorito = false;
     }
 
@@ -35,6 +35,10 @@ public class Contato {
         return sobrenome;
     }
 
+    public String getTelefone(){
+        return telefone;
+    }
+
     public boolean getFavorito(){
         return favorito;
     }
@@ -47,7 +51,6 @@ public class Contato {
         return nome.equals(contato.nome) && sobrenome.equals(contato.sobrenome);
     }
 
-    @Override
     public String toString() {
         if favorito{
             return "❤️ " + this.nome + " " + this.sobrenome + "\n" + this.telefone;
