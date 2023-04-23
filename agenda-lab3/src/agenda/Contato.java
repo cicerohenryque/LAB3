@@ -1,7 +1,5 @@
 package agenda;
 
-import java.util.Objects;
-
 public class Contato {
 
     private String nome;
@@ -12,18 +10,18 @@ public class Contato {
 
     private boolean favorito;
 
-    public Contato(String nome, String sobrenome, String numeroTelefone) {
+    public Contato(String nome, String sobrenome, String telefone) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.telefone = telefone;
         this.favorito = false;
     }
 
-    public favoritar() {
+    public void favoritar() {
         this.favorito = true;
     }
 
-    public desfavoritar(){
+    public void desfavoritar(){
         this.favorito = false;
     }
 
@@ -52,7 +50,7 @@ public class Contato {
     }
 
     public String toString() {
-        if favorito{
+        if (favorito){
             return "❤️ " + this.nome + " " + this.sobrenome + "\n" + this.telefone;
         }
         return this.nome + " " + this.sobrenome + "\n" + this.telefone;

@@ -47,9 +47,12 @@ public class MainAgenda {
 				"\n---\nMENU\n" + 
 						"(C)adastrar Contato\n" + 
 						"(L)istar Contatos\n" + 
-						"(E)xibir Contato\n" + 
-						"(S)air\n" + 
-						"\n" + 
+						"(E)xibir Contato\n" +
+						"(F)avoritos\n"+
+						"(A)dicionar Favorito\n"+
+						"(R)emover Favorito\n"+
+						"(S)air\n" +
+						"\n" +
 						"Opção> ");
 		return scanner.next().toUpperCase();
 	}
@@ -67,16 +70,25 @@ public class MainAgenda {
 			cadastraContato(agenda, scanner);
 			break;
 		case "L":
-			listaContatos(agenda);
+			listaDeContatos(agenda);
 			break;
 		case "E":
-			exibeContato(agenda, scanner);
+			getContato(agenda, scanner);
+			break;
+		case "A":
+			cadastrarFavorito(agenda, scanner);
+			break;
+		case "F":
+			listaDeFavoritos(agenda);
+			break;
+		case "R":
+			removerFavorito(agenda, scanner);
 			break;
 		case "S":
 			sai();
 			break;
 		default:
-			System.out.println("Opção inválida!");
+			System.out.print("Opção inválida!");
 		}
 	}
 
@@ -85,14 +97,9 @@ public class MainAgenda {
 	 * 
 	 * @param agenda A agenda sendo manipulada.
 	 */
-	private static void listaContatos(Agenda agenda) {
-		System.out.println("\nLista de contatos: ");
-		String[] contatos = agenda.getContatos();
-		for (int i = 0; i < contatos.length; i++) {
-			if (contatos[i] != null) {
-				System.out.println(formataContato(i, contatos[i]));
-			}
-		}
+	private static void listaDeContatos(Agenda agenda) {
+		System.out.print("\nLista de contatos: ");
+		System.out.println(agenda.listaDeContatos());
 	}
 
 	/**
@@ -101,22 +108,15 @@ public class MainAgenda {
 	 * @param agenda A agenda.
 	 * @param scanner Scanner para capturar qual contato.
 	 */
-	private static void exibeContato(Agenda agenda, Scanner scanner) {
+	private static void getContato(Agenda agenda, Scanner scanner) {
 		System.out.print("\nQual contato> ");
 		int posicao = scanner.nextInt();
-		String contato = agenda.getContato(posicao);
-		System.out.println("Dados do contato:\n" + contato.toString());
-	}
-
-	/**
-	 * Formata um contato para impressão na interface. 
-	 * 
-	 * @param posicao A posição do contato (que é exibida)/
-	 * @param contato O contato a ser impresso.
-	 * @return A String formatada.
-	 */
-	private static String formataContato(int posicao, Contato contato) {
-		return posicao + " - " + contato;
+		if (agenda.verificaExistencia(posicao)){
+			System.out.println(agenda.getContato(posicao));
+		} 
+		else {
+			System.out.println("POSICAO INVALIDA");
+		}
 	}
 
 	/**
@@ -135,6 +135,29 @@ public class MainAgenda {
 		System.out.print("\nTelefone> ");
 		String telefone = scanner.next();
 		agenda.cadastraContato(posicao, nome, sobrenome, telefone);
+	}
+
+	public static void cadastrarFavorito(Agenda agenda, Scanner scanner) {
+		System.out.print("Contato> ");
+		int contato = scanner.nextInt();
+		System.out.print("Posicao> ");
+		int posicaoDoFavorito = scanner.nextInt();
+		try {
+			agenda.cadastrarFavorito(contato, posicaoDoFavorito);
+			System.out.println("CONTATO FAVORITADO NA POSICAO " + posicaoDoFavorito + "!");
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void removerFavorito(Agenda agenda, Scanner scanner) {
+		System.out.println("Posicao> ");
+		int posicaoDoFavorito = scanner.nextInt();
+		agenda.removerFavorito(posicaoDoFavorito);
+	}
+
+	public static void listaDeFavoritos(Agenda agenda) {
+		System.out.print(agenda.listaDeFavoritos());
 	}
 
 	/**
