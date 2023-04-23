@@ -92,13 +92,13 @@ public class Agenda {
 	}
 
 	public String listaDeContatos(){
-		String listas = "";
+		String listasContatos = "";
 		for(int i = 0; i < contatos.length; i++){
 			if(contatos[i] != null){
-				listas += "\n" + (i + 1) + " - " + contatos[i].getNome() + " " + contatos[i].getSobrenome() + "\n";
+				listasContatos += "\n" + (i + 1) + " - " + contatos[i].getNome() + " " + contatos[i].getSobrenome() + "\n";
 			}
 		}
-		return listas;
+		return listasContatos;
 	}
 
 	public void cadastrarFavorito(int posicaoDoContato, int posicaoDoFavorito) {
@@ -129,8 +129,8 @@ public class Agenda {
 
 	public String listaDeFavoritos(){
 		String listasFavoritos = "";
-		for(int i = 0; i < contatos.length; i++){
-			if(contatos[i] != null){
+		for(int i = 0; i < favorito.length; i++){
+			if(favorito[i] != null){
 				listasFavoritos += "\n" + (i + 1) + " - " + contatos[i].getNome() + " " + contatos[i].getSobrenome() + "\n";
 			}
 		}
