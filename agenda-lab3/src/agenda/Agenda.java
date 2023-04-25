@@ -39,10 +39,19 @@ public class Agenda {
 		return contatos[posicao - 1];
 	}
 
+	/**
+	 * Acessa a lista de favoritos mantida.
+	 * @return O array de favoritos.
+	 */
 	public Contato[] getFavorito(){
 		return this.favorito.clone();
 	}
 
+	/**
+	 * Acessa os dados de um favorito especifico.
+	 * @param posicao Posição do favorito na agenda.
+	 * @return Dados do contato. Null se não há contato na posição
+	 */
 	public Contato getFavorito(int posicao){
 		return favorito[posicao - 1];
 	}
@@ -73,6 +82,16 @@ public class Agenda {
 		}
 	}
 
+	/**
+	 * 
+	 * Verifica se há algum contato com o mesmo nome e sobrenome.
+	 * 
+	 * @param nome nome do contato.
+	 * @param sobrenome sobrenome do contato
+	 * @return True se existe o nome e sobrenome passados como parâmetro
+	 * 		   no array de contatos, caso contrario retorna falso se nAo
+	 * 		   existe o nome.
+	 */
 	public boolean verificaExistenciaDoContato(String nome, String sobrenome){
 		for (Contato contato : contatos){
 			if(contato != null) {
@@ -84,13 +103,23 @@ public class Agenda {
 		return false;
 	}
 
+	/** 
+	 * Verifica se a posição do contato no array é null, caso seja retorna falso, 
+	 * caso não seja retorna true notificando que não é null naquela posição.
+	 * @param posicao posicao no array de contatos.
+	 * @return True caso a posição solicitada nAo é null, do contrario retorna false se é null.
+	 */
 	public boolean verificaExistencia(int posicao) {
 		if (contatos[posicao - 1] == null) {
 			return false;
 		}
 		return true;
 	}
-
+	
+	/**
+	 * Acessa a lista de contatos mantida.
+	 * @return O array de contatos.
+	 */
 	public String listaDeContatos(){
 		String listasContatos = "";
 		for(int i = 0; i < contatos.length; i++){
@@ -101,6 +130,11 @@ public class Agenda {
 		return listasContatos;
 	}
 
+	/**
+	 *  * Cadastra um favorito em uma posição. Um cadastro em uma posição que já existe sobrescreve o anterior. 
+	 * @param posicaoDoContato Posição do contato no array.
+	 * @param posicaoDoFavorito Posição do favorito no array.
+	 */
 	public void cadastrarFavorito(int posicaoDoContato, int posicaoDoFavorito) {
 		if (posicaoDoContato <= 0 || posicaoDoContato > 100) {
 			throw new IndexOutOfBoundsException("POSIÇÃO INVALIDA");
@@ -116,7 +150,12 @@ public class Agenda {
 		this.favorito[posicaoDoFavorito - 1] = this.contatos[posicaoDoContato - 1];
 		this.contatos[posicaoDoContato - 1].favoritar();
 	}
-	
+
+	/**
+	 * Remove um contato do array de favoritos.
+	 * @param posicao posicao a ser removida de favoritos.
+	 * @return Estado do cadastro de contato favorito.
+	 */
 	public void removerFavorito (int posicaoDoFavorito){
 		if (posicaoDoFavorito <= 0 || posicaoDoFavorito > 10){
 			throw new IndexOutOfBoundsException("POSICAO INVALIDA");
@@ -127,11 +166,15 @@ public class Agenda {
 		this.favorito[posicaoDoFavorito - 1] = null;
 	}
 
+	/**
+	 * Lista os contatos favoritos do array de favoritos.
+	 * @return RepresentaCAo em String dos contatos favoritos existentes no array de favoritos.
+	 */
 	public String listaDeFavoritos(){
 		String listasFavoritos = "";
 		for(int i = 0; i < favorito.length; i++){
 			if(favorito[i] != null){
-				listasFavoritos += "\n" + (i + 1) + " - " + contatos[i].getNome() + " " + contatos[i].getSobrenome() + "\n";
+				listasFavoritos += "\n" + (i + 1) + " - " + favorito[i].getNome() + " " + favorito[i].getSobrenome() + "\n";
 			}
 		}
 		return listasFavoritos;

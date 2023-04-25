@@ -44,7 +44,7 @@ public class MainAgenda {
 	 */
 	private static String menu(Scanner scanner) {
 		System.out.println(
-				"\n---\nMENU\n" + 
+						"\n" + 
 						"(C)adastrar Contato\n" + 
 						"(L)istar Contatos\n" + 
 						"(E)xibir Contato\n" +
@@ -111,11 +111,11 @@ public class MainAgenda {
 	private static void getContato(Agenda agenda, Scanner scanner) {
 		System.out.print("\nQual contato> ");
 		int posicao = scanner.nextInt();
-		if (agenda.verificaExistencia(posicao)){
-			System.out.println(agenda.getContato(posicao));
-		} 
-		else {
+		if(!(agenda.verificaExistencia(posicao))) {
 			System.out.println("POSICAO INVALIDA");
+			
+		} else {
+			System.out.println(agenda.getContato(posicao));
 		}
 	}
 
@@ -134,9 +134,16 @@ public class MainAgenda {
 		String sobrenome = scanner.next();
 		System.out.print("\nTelefone> ");
 		String telefone = scanner.next();
+		telefone += scanner.nextLine();
 		agenda.cadastraContato(posicao, nome, sobrenome, telefone);
+		System.out.println("CADASTRO REALIZADO");
 	}
 
+	/**
+	 * Cadastra um favorito na agenda. 
+	 * @param agenda A agenda.
+	 * @param scanner Scanner para pedir informações do contato.
+	 */
 	public static void cadastrarFavorito(Agenda agenda, Scanner scanner) {
 		System.out.print("Contato> ");
 		int contato = scanner.nextInt();
@@ -150,12 +157,21 @@ public class MainAgenda {
 		}
 	}
 
+	/**
+	 * Remove um contato favorito da agenda.
+	 * @param agenda  A agenda que estamos manipulando.
+	 * @param scanner Objeto scanner para o caso do comando precisar de mais input.
+	 */
 	public static void removerFavorito(Agenda agenda, Scanner scanner) {
 		System.out.println("Posicao> ");
 		int posicaoDoFavorito = scanner.nextInt();
 		agenda.removerFavorito(posicaoDoFavorito);
 	}
 
+	/**
+	 * Lista os contatos favoritos da agenda.
+	 * @param agenda  A agenda que estamos manipulando.
+	 **/
 	public static void listaDeFavoritos(Agenda agenda) {
 		System.out.print(agenda.listaDeFavoritos());
 	}
